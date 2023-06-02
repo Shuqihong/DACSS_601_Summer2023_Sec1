@@ -1,40 +1,31 @@
 ---
 title: "Shuqi Hong"
-image: Shuqi Hong.jpg
+image: ShuqiHong.jpg
 about:
   template: solana
   image-width: 15em
   image-shape: round
-  image: images/YourName.jpeg
+  image: images/shuqihong.jpg
   links:
     - icon: github
       text: Github
-      href: https://github.com/github_shuqihong@umass.edu
+      href: https://github.com/Shuqihong
 ---
 
-##Instructions
-
-  - save a copy of this document as *FirstLast.qmd* in the **about** folder
-  - replace *Your Name* in yaml header with your first and last name
-  - save an image (jpeg, png) to use in the **about/images** folder
-  - replace image names in yaml header
-  - replace github user name
-  - fill in information below, as appropriate
-  - commit to github and submit pull request
-
 ## Education/Work Background
-Master student in Physics in Umass
+I compeleted undergraduate degree in 2022 in China in Opto-electronic information science and engineering. Now I am a master student in Physics in Umass and want to graduate in next semester. I don't have any work experience.
 
 ## R experience
-Don't have any experience
+I don't have any R experience or even programming experience. I just used a little Phython and C++ when I was doing some projects. But I'm still not familar with programming.
 
 ## Research interests
-I want to learn something abour programming for my future study in physics analysis or transfer to data analysis major.
+I want to learn something about programming for my future study in physics analysis or transfer to data analysis major and also enrich my skills, because, you know, programming is important and everything relies on it in some degree.
 
 ## Hometown
-Guangdong, China
+Guangzhou, China
 
 ## Hobbies
 Swimming and dancing
 
 ## Fun fact
+I'm doing a project now which is about analyzing physics particles data. We actually use Emacs to write C++ programs cuz it can be opened in terminal directly.
