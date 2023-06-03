@@ -1,0 +1,58 @@
+---
+title: "Challenge 1 Solution"
+author: "Shuqi Hong"
+description: "Reading in data and creating a post"
+date: "6/02/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+  - railroads
+  - faostat
+  - wildbirds
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+library(readxl)
+
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+I've already tried to read all of such files and just show wild_bird_data.xlsx in challenge 1 cuz I believe it is representative. 
+
+```{r}
+
+wild_bird_from_xlsx <- read_excel("../posts/_data/wild_bird_data.xlsx", skip = 1)
+head(wild_bird_from_xlsx)
+
+```
+
+## Describe the data
+There are 146 rows and 2 columns in this file. From this table we can see the left column is describing the wild birds' weight and the right one is the population of such weights. The type of both columns are double and no character.
+```{r}
+glimpse(wild_bird_from_xlsx)
+spec(wild_bird_from_xlsx)
+typeof(wild_bird_from_xlsx$`Population size`)
+typeof(wild_bird_from_xlsx$`Wet body weight [g]`)
+```
+I'm trying to calculate the average weight of all the birds, but I didn't succeed cuz I don't know how to write the code. I used "summary" to do that but it just gave the average of each column but not the whole table.

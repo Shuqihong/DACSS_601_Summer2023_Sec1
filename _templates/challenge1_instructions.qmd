@@ -1,8 +1,8 @@
 ---
-title: "Challenge 1 Solution"
-author: "Shuqi Hong"
+title: "Challenge 1 Instructions"
+author: "Sean Conway"
 description: "Reading in data and creating a post"
-date: "6/02/2023"
+date: "5/30/2023"
 format:
   html:
     toc: true
@@ -21,11 +21,9 @@ categories:
 #| warning: false
 #| message: false
 
-
 library(tidyverse)
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
-library(readxl)
 
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
 ## Challenge Overview
@@ -38,21 +36,27 @@ Today's challenge is to
 
 ## Read in the Data
 
-I've already tried to read all of such files and just show wild_bird_data.xlsx in challenge 1 cuz I believe it is representative. 
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xls ⭐⭐⭐⭐
+
+Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
 
 ```{r}
 
-wild_bird_from_xlsx <- read_excel("../posts/_data/wild_bird_data.xlsx", skip = 1)
-head(wild_bird_from_xlsx)
-
 ```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
 
 ## Describe the data
-There are 146 rows and 2 columns in this file. From this table we can see the left column is describing the wild birds' weight and the right one is the population of such weights. The type of both columns are double and no character.
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
 ```{r}
-glimpse(wild_bird_from_xlsx)
-spec(wild_bird_from_xlsx)
-typeof(wild_bird_from_xlsx$`Population size`)
-typeof(wild_bird_from_xlsx$`Wet body weight [g]`)
+#| label: summary
+
 ```
-I'm trying to calculate the average weight of all the birds, but I didn't succeed cuz I don't know how to write the code. I used "summary" to do that but it just gave the average of each column but not the whole table.

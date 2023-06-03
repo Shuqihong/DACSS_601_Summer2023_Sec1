@@ -1,0 +1,14 @@
+{
+  "hash": "9dd0843e8819419359950548f3e1ca86",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 1 Solution\"\nauthor: \"Shuqi Hong\"\ndescription: \"Reading in data and creating a post\"\ndate: \"6/02/2023\"\nformat:\n  html:\n    toc: true\n    code-fold: true\n    code-copy: true\n    code-tools: true\ncategories:\n  - challenge_1\n  - railroads\n  - faostat\n  - wildbirds\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\nlibrary(readxl)\n```\n:::\n\n\n## Challenge Overview\n\nToday's challenge is to\n\n1)  read in a dataset, and\n\n2)  describe the dataset using both words and any supporting information (e.g., tables, etc)\n\n## Read in the Data\n\nI've already tried to read all of such files and just show wild_bird_data.xlsx in challenge 1 cuz I believe it is representative. \n\n\n::: {.cell}\n\n```{.r .cell-code}\nwild_bird_from_xlsx <- read_excel(\"../posts/_data/wild_bird_data.xlsx\", skip = 1)\nhead(wild_bird_from_xlsx)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 6 × 2\n  `Wet body weight [g]` `Population size`\n                  <dbl>             <dbl>\n1                  5.46           532194.\n2                  7.76          3165107.\n3                  8.64          2592997.\n4                 10.7           3524193.\n5                  7.42           389806.\n6                  9.12           604766.\n```\n:::\n:::\n\n\n## Describe the data\nThere are 146 rows and 2 columns in this file. From this table we can see the left column is describing the wild birds' weight and the right one is the population of such weights. The type of both columns are double and no character.\n\n::: {.cell}\n\n```{.r .cell-code}\nglimpse(wild_bird_from_xlsx)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nRows: 146\nColumns: 2\n$ `Wet body weight [g]` <dbl> 5.458872, 7.764568, 8.638587, 10.689735, 7.41722…\n$ `Population size`     <dbl> 532194.3951, 3165107.4454, 2592996.8678, 3524193…\n```\n:::\n\n```{.r .cell-code}\nspec(wild_bird_from_xlsx)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nNULL\n```\n:::\n\n```{.r .cell-code}\ntypeof(wild_bird_from_xlsx$`Population size`)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] \"double\"\n```\n:::\n\n```{.r .cell-code}\ntypeof(wild_bird_from_xlsx$`Wet body weight [g]`)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] \"double\"\n```\n:::\n:::\n\nI'm trying to calculate the average weight of all the birds, but I didn't succeed cuz I don't know how to write the code. I used \"summary\" to do that but it just gave the average of each column but not the whole table.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
