@@ -99,4 +99,4 @@ hb %>% select(country,"customer number", hotel) %>%
   pivot_wider(names_from=country, values_from="customer number")
 
 ```
-I don't know why the cell became <dbl[123]>. Maybe I still don't know the meaning of pivot_wider. I mean what does it mean to swap rows and columns?
+I don't know why the cell became <dbl[123]>. Maybe I still don't know the meaning of pivot_wider. I mean what does it mean to swap columns and rows?
