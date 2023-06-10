@@ -1,0 +1,96 @@
+---
+title: "Challenge 4"
+author: "Shuqi Hong"
+description: "More data wrangling: pivoting"
+date: "6/09/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - abc_poll
+  - eggs
+  - fed_rates
+  - hotel_bookings
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+
+fed <- read_csv("_data/FedFundsRate.csv")
+
+fed<- fed %>% fill(`Real GDP (Percent Change)`, .direction = "down") %>% 
+  fill(`Inflation Rate`, .direction = "down") %>% 
+  fill(`Effective Federal Funds Rate`, .direction = "down") %>%
+  mutate_at (c(1:3), as.character) #%>% str()
+
+fed %>% summarise_all(funs(sum(is.na(.))))
+glimpse(fed)
+head(fed)
+
+fed %>% count(Year)
+
+```
+Dates can be added, so it should be character not factor. I also fill the several columns.
+
+
+Below code: I just filter Federal Funds Target Rate without NA
+```{r}
+
+
+TargetRate <- fed %>% 
+  filter(!is.na(`Federal Funds Target Rate`)) %>% 
+  select(-c(`Federal Funds Upper Target`, `Federal Funds Lower Target`))
+
+TargetRate
+
+
+#newfed <- fed %>% select(-c(`Federal Funds Target Rate`,  `Federal Funds Upper Target`, `Federal Funds Lower Target`)) 
+
+#newfed
+
+```
+
+
+
+```{r}
+hotel <- read_csv("_data/hotel_bookings.csv")
+
+#Find unique values in all columns
+hotel %>% lapply(unique)
+hotel
+ 
+```
+
+```{r}
+hotelclean <- hotel %>% 
+  mutate_at(c(1,2,5,13,14,15,20,21,27,31,16), as.factor)
+
+hotelclean <- hotelclean %>%
+  mutate_at(c(6,8,9,10,11,12,18,19,21,22,26,28,29,30,17), as.integer, na.rm=T) 
+
+hotelclean <- hotelclean %>%
+  mutate_at(c(4,7,32,3), as.character) %>% select(-company) %>% mutate(state = case_when
+         (is_canceled == "1" ~ "canceled",
+          is_canceled == "0" ~ "regular")) %>% 
+  select(-is_canceled) 
+
+#separate reservation status date into year, month, date columns
+
+hotelclean <- hotelclean %>% separate(reservation_status_date, into= c("reservation_status_year","reservation_month", "reservation_status_date"), sep="-")
+
+hotelclean 
+
+glimpse(hotelclean)
+
+```
