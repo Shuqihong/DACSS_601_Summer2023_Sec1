@@ -1,0 +1,117 @@
+---
+title: "Homework 2"
+author: "Shuqi Hong"
+description: "Reading in final project data - avocado.csv"
+date: "6/09/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+
+---
+
+# Introduction
+
+The table below represents weekly 2015 - 2018 retail scan data for National retail volume (units) and price. Retail scan data comes directly from retailers’ cash registers based on actual retail sales of Hass avocados. 
+
+Some relevant columns in the dataset:
+
+Date - The date of the observation
+AveragePrice - the average price of a single avocado
+type - conventional or organic
+year - the year
+Region - the city or region of the observation
+Total Volume - Total number of avocados sold
+4046 - Total number of avocados with PLU 4046 sold
+4225 - Total number of avocados with PLU 4225 sold
+4770 - Total number of avocados with PLU 4770 sold
+
+I read in file first and delete the first column because it represents row number.
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(dplyr)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+
+avocado <- read_csv("_data/avocado.csv")
+
+avocado <- avocado %>% select(-1)
+
+avocado
+
+```
+
+I separate "Date" into year, month and day column which shows clearer. Then I sorted them chronologically and mutate the variables. the column of 4046, 4225, 4770 are the size of Hass avocado, respectively small, large, extra large. So I also renamed them. I think I won't analyze this data in each week, so I also delete it.
+
+```{r}
+clean_avocado <- avocado %>% select(-`year`) %>% 
+  separate(Date, into= c("year","month","day"), sep="-") %>% arrange(year, month, day) %>%
+  fill(year,month) %>% 
+  mutate( month = case_when(
+  month == "01" ~ "January", 
+  month == "02" ~ "Feburary",
+  month == "03" ~ "March",
+  month == "04" ~ "April",
+  month == "05" ~ "May",
+  month == "06" ~ "June",
+  month == "07" ~ "July",
+  month == "08" ~ "August",
+  month == "09" ~ "September",
+  month == "10" ~ "October",
+  month == "11" ~ "November",
+  month == "12" ~ "December"
+)) %>%
+  mutate(
+    month = as_factor(month),
+    day = as_factor(day),
+    type = as_factor(type)
+  ) %>% 
+  rename(c( small = `4046`, `large` = `4225`, `Extra_large` = `4770`)) %>% select(-`day`)
+                  
+clean_avocado   
+
+glimpse(clean_avocado)
+unique(clean_avocado$type)
+
+```
+
+```{r}
+clean_avocado <- clean_avocado %>% group_by(year, month, region, type) %>%
+  mutate(mean_price_permonth = mean(AveragePrice)) %>% 
+  ungroup() %>% 
+  group_by(year, region, type) %>%
+  mutate(mean_price_peryear = mean(AveragePrice))%>% 
+  ungroup() %>% select(-AveragePrice)
+
+clean_avocado #%>%   summarise(mean_AveragePrice = mean(AveragePrice))
+
+```
+The original average price is calculated per week which is useless for me. So I caculate the average price of each year and month. 
+
+```{r}
+
+summarise_avocado <- clean_avocado %>% group_by(year, region, type) %>%
+  summarise(mean_price_peryear = mean(mean_price_peryear), mean_total_volume = mean(`Total Volume`), mean_total_bags = mean(`Total Bags`) )
+
+summarise_avocado
+```
+
+# Potential questions
+This table is about the general things which are the average value of price, total volume and total bags in each year. I will plot some graphs about this tabble in the future.
+
+From this table, I will focus on below information in the future. 
+
+1. The change in annual purchase volume of avocados in the whole country.
+2. people prefer organic avocados or conventional one. (Analyze it from regions, months and years.)
+3. The relationship between the purchase of the size of avocados and purchase of the type of it.
+4. The relationship between the purchase of the total volume and average price.
+5. Annual change of purchase of the total volume in each region.
+6. Each region purchased different size of bags ratios each year.
+
+This is what I think of now, and I will continue to update it in the future.
+
