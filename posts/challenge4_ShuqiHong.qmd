@@ -67,7 +67,7 @@ TargetRate
 hotel <- read_csv("_data/hotel_bookings.csv")
 
 #Find unique values in all columns
-hotel %>% lapply(unique)
+#hotel %>% lapply(unique)
 hotel
  
 ```
