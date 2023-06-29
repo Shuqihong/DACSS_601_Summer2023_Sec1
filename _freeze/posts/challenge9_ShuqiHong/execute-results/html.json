@@ -1,0 +1,20 @@
+{
+  "hash": "61c3cd4a25e4b8f6eef78f2b22bf8afa",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 9\"\nauthor: \"Shuqi Hong\"\ndescription: \"Creating a function\"\ndate: \"6/29/2023\"\nformat:\n  html:\n    toc: true\n    code-copy: true\n    code-tools: true\n    df-print: paged\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n```\n:::\n\n\n## Challenge Overview\n\nToday's challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:\n\nExamples of such functions are:\n1) A function that reads in and cleans a dataset.  \n2) A function that computes summary statistics (e.g., computes the z score for a variable).  \n3) A function that plots a histogram.  \n\nThat's it!\n\n\n#A function that computes summary statistics\n\n\n::: {.cell}\n\n```{.r .cell-code}\nMy.Mean <- function(x) { \n  \n  Output <- sum(x) / length(x)\n  \n  return(Output)\n  \n}\nMy.Mean(0:10)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 5\n```\n:::\n:::\n\n\n#A function that plots a histogram\n\n::: {.cell}\n\n```{.r .cell-code}\nMy.Hist <- function(x, add.median = T, add.mean = T, add.legend = T) {\n  \n  hist(x)\n  \n  if(add.median == T) {abline(v = median(x), lwd = 3)}\n  \n  if(add.mean == T) {abline(v = mean(x), lty = 2, lwd = 3)}\n  \n  if(add.legend == T) {\n    \n    legend(\"topright\", c(\"median\", \"mean\"), lwd = c(3, 3), lty = c(1, 2))\n    \n  }\n}\n\nMy.Hist(rexp(100), add.median = T, add.mean = T, add.legend = T)\n```\n\n::: {.cell-output-display}\n![](challenge9_ShuqiHong_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "challenge9_ShuqiHong_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
