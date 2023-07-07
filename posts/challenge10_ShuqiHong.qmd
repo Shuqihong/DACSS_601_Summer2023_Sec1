@@ -1,0 +1,123 @@
+---
+title: "Challenge 10 Instructions"
+author: "Shuqi Hong"
+description: "purrr"
+date: "7/6/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+    df-print: paged
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+#| include: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge
+```{r}
+n <- 100 # sample size
+m <- seq(1,10) # means 
+samps <- map(m,rnorm,n=n) 
+```
+
+We can then use `map_dbl` to verify that this worked correctly by computing the mean for each sample.  
+
+```{r}
+samps %>%
+  map_dbl(mean)
+```
+
+ 
+The `map()` is used to apply a function to each element of the list or a vector. 
+```{r}
+#the square function is to calculate x square
+square <- function(x){
+  return(x*x)
+}
+
+vector1 <- c(2,4,5,6)
+
+#applay square function to vector1
+map(vector1, square)
+```
+`map2()` is used to apply a function to a pair of elements from two different lists or vectors.
+```{r}
+
+x <- c(2, 4, 5, 6)
+y <- c(2, 3, 4, 5)
+
+#make a power function
+to_Power <- function(x, y){
+  return(x**y)
+}
+
+#apply the to_power function to x and y
+map2(x, y, to_Power)
+
+```
+
+In this chunck, the result should be x^y.
+
+Make a tibble here.
+```{r}
+df_xyz <- tibble(
+  x = rnorm(10),
+  y = rnorm(10),
+  z = rnorm(10)
+) %>% 
+  print()
+```
+
+use the map_dbl() function from the `purrr` package to calculate the mean of each column in the df_xyz data frame.
+```{r}
+
+xyz_means <- map_dbl(
+  .x = df_xyz, 
+  .f = mean
+) 
+
+xyz_means
+
+```
+
+```{r}
+
+eggs <- read_csv("_data/eggs_tidy.csv")
+
+eggs
+```
+
+
+
+```{r}
+
+cat_table <- tibble(
+  category = vector("character"), 
+  variable = vector("numeric"), 
+  n        = vector("numeric")
+) 
+
+map_dfr(
+  .x = c("large_half_dozen", "large_dozen", "extra_large_half_dozen","extra_large_dozen"),
+  .f = function(x) {
+   eggs %>% 
+      count(.data[[x]]) %>% 
+      mutate(category = names(.)[1]) %>% 
+      rename(variable = 1) %>% 
+      select(category, variable, n)
+  }
+)
+
+```
+
+This function looks like `pivot`.
