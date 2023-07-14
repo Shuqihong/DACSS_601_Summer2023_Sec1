@@ -457,23 +457,23 @@ In this project, I aimed to analyze a dataset related to avocado price and purch
 
 ## References
 
-Hass Avocado Board<https://hassavocadoboard.com>
+Hass Avocado Board<https://hassavocadoboard.com>.
 
-Justin Kiggins.(2018). Avocado Prices:2015-2015. *Kaggle*. <https://www.kaggle.com/datasets/neuromusic/avocado-prices>
+Justin Kiggins.(2018). Avocado Prices:2015-2015. *Kaggle*. <https://www.kaggle.com/datasets/neuromusic/avocado-prices>.
 
 ### Technical References
 
-Wickham, H., & Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. <https://r4ds.had.co.nz>
+Wickham, H., & Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. <https://r4ds.had.co.nz>.
 
-R Core Team (2023). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>
+R Core Team (2023). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
 
-Rob Kabacoff. Data Visualization with R. <https://rkabacoff.github.io/datavis/>
+Rob Kabacoff. Data Visualization with R. <https://rkabacoff.github.io/datavis/>.
 
 Wickham, H. (2019). Advanced R, Second Edition. CRC Press.
 
-R for Epidemiology. <https://www.r4epi.com>
+R for Epidemiology. <https://www.r4epi.com>.
 
-Xiangdong Xie, Shuqi Hong. non Linear Regression. <https://github.com/Shuqihong/DASS/blob/main/nonLinearRegression.ipynb>
+Xiangdong Xie, Shuqi Hong. non Linear Regression. <https://github.com/Shuqihong/DASS/blob/main/nonLinearRegression.ipynb>.
 
 
 
