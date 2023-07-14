@@ -9,6 +9,7 @@ format:
     code-fold: true
     code-copy: true
     code-tools: true
+    df-print: paged
 categories:
   - challenge_4
   - abc_poll
@@ -69,7 +70,6 @@ hotel <- read_csv("_data/hotel_bookings.csv")
 #Find unique values in all columns
 #hotel %>% lapply(unique)
 hotel
- 
 ```
 
 ```{r}

@@ -16,7 +16,7 @@ about:
 I compeleted undergraduate degree in 2022 in China in Opto-electronic information science and engineering. Now I am a master student in Physics in Umass and want to graduate in next semester. I don't have any work experience.
 
 ## R experience
-I don't have any R experience or even programming experience. I just used a little Phython and C++ when I was doing some projects. But I'm still not familar with programming.
+I don't have any R experience or even programming experience. I just used a little Phython and C++ when I was doing some projects. But I'm still not familiar with programming.
 
 ## Research interests
 I want to learn something about programming for my future study in physics analysis or transfer to data analysis major and also enrich my skills, because, you know, programming is important and everything relies on it in some degree.

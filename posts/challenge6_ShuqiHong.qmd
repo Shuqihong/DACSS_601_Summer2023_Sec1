@@ -66,6 +66,22 @@ fed_clean %>% ggplot(aes(x = date, y = `Effective Federal Funds Rate` )) +
 
 This graph is the annual trend of effective federal funds rate from 1954 to 2017. From 1954 to about 1982, the general trend was increasing then went down. We can see in about 1982, the rate was extremely high.
 
+```{r}
+
+fed_long <- fed_clean %>% pivot_longer(cols = -date, names_to = "variable", values_to = "value")
+fed_long
+
+fed_long %>% filter(variable%in%c("Effective Federal Funds Rate", "Real GDP (Percent Change)", "Unemployment Rate", "Inflation Rate")) %>% 
+  ggplot(., aes(x=date, y=value, color = variable))+
+  geom_point(size = 0) +
+  geom_line() +
+  facet_grid(rows = vars(variable))
+
+```
+
+
+
+
 ## Read in data and clean data
   
   - AB_NYC ⭐⭐⭐⭐⭐
@@ -138,3 +154,90 @@ hotel_clean3 %>%ggplot(aes(x = "", y = n, fill = hotel)) +
 ```
 
 This graph shows the proportion of city hotel and resort hotel in all countries, in which we can see the number of resort hotel is still much more than city hotel. But the proportion of city hotel is a little bit bigger than that in PRT.
+
+
+```{r}
+debt <- read_excel("_data/debt_in_trillions.xlsx")
+
+debt <- debt %>% mutate(date = parse_date_time(`Year and Quarter`, orders = "yq"))
+
+```
+
+```{r}
+
+ggplot(debt, aes(x=date, y=Total)) +
+  geom_point() +
+  geom_line() +
+  scale_y_continuous(labels = scales :: label_number(suffix = "Trillion"))
+
+```
+
+```{r}
+
+ggplot(debt, aes(x=date, y=Total)) +
+  geom_point() +
+  geom_line() +
+  scale_y_continuous(limits=c(0, max(debt$Total)) , labels = scales :: label_number(suffix = "Trillion"))
+
+```
+```{r}
+
+ debt_long <- debt %>% pivot_longer(
+   cols = Mortgage : Other,
+   names_to = "Loan",
+   values_to = "total"  
+ ) %>%
+     select(-Total) %>%
+     mutate(Loan = as.factor(Loan))
+debt
+debt_long
+```
+
+```{r}
+
+ggplot(debt_long, aes(x=date, y = total, color= Loan)) +
+  geom_line() +
+  geom_point(size=.5) +
+  theme(legend.position = "right") +
+  scale_y_continuous(labels = scales::label_number(suffix = "Trillion"))
+
+```
+
+```{r}
+
+ggplot(debt_long, aes(x=date, y = total, fill= Loan)) +
+  geom_bar(position = "stack", stat = "identity") +
+  theme(legend.position = "top") +
+  scale_y_continuous(labels = scales::label_number(suffix = "Trillion"))
+
+```
+
+```{r}
+
+debt_long <- debt_long %>%
+  mutate(Loan = fct_relevel(Loan, "Mortgage", "Auto Loan", "HE Revolving", "Student Loan", "Credit Card", "Other"))
+
+ggplot(debt_long, aes(x=date, y = total, fill= Loan)) +
+  #sum up all
+  geom_bar(position = "stack", stat = "identity") +
+  #the position of legend
+  theme(legend.position = "top") +
+  #add "Trillion" in y label
+  scale_y_continuous(labels = scales::label_number(suffix = "Trillion")) + 
+  #make legend in 1 line
+  guides(fill = guide_legend(nrow = 1)) +
+  #replace space to change line
+  scale_fill_discrete(labels = 
+                        str_replace(levels(debt_long$Loan), " ", "\n"))
+
+
+```
+
+
+
+
+
+
+
+
+
