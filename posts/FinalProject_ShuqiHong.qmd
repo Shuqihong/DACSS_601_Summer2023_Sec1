@@ -473,7 +473,7 @@ Wickham, H. (2019). Advanced R, Second Edition. CRC Press.
 
 R for Epidemiology. <https://www.r4epi.com>
 
-Xiangdong Xie, Shuqi Hong. non Linear Regression. <https://github.com/Shuqihong/DACSS_601_Summer2023_Sec1/blob/my-branch/posts/nonLinearRegression.ipynb>
+Xiangdong Xie, Shuqi Hong. non Linear Regression. <https://github.com/Shuqihong/DASS/blob/main/nonLinearRegression.ipynb>
 
 
 
